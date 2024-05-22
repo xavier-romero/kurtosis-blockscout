@@ -2,6 +2,7 @@ DB_PORT = 5432
 
 
 def get_config(args, db_host=None, get_db_configs=False):
+    deployment_suffix = args.get("deployment_suffix", "")
     CONFIG = {
         "POSTGRES": {
             "IMAGE": "postgres:16.2",
@@ -9,6 +10,7 @@ def get_config(args, db_host=None, get_db_configs=False):
             "NAME": "master",
             "USER": "master",
             "PASSWORD": "master",
+            "SERVICE_NAME": "bs-postgres" + deployment_suffix,
         },
         "BACKEND": {
             "DB": {
@@ -18,7 +20,7 @@ def get_config(args, db_host=None, get_db_configs=False):
                 "PORT": DB_PORT,
             },
             "IMAGE": "blockscout/blockscout-zkevm:6.5.0",
-            "NAME": "backend",
+            "NAME": "bs-backend" + deployment_suffix,
             "PORT": 4004,
             "TITLE": "Polygon CDK",
         },
@@ -30,17 +32,17 @@ def get_config(args, db_host=None, get_db_configs=False):
                 "PORT": DB_PORT,
             },
             "IMAGE": "ghcr.io/blockscout/stats:main",
-            "NAME": "stats",
+            "NAME": "bs-stats" + deployment_suffix,
             "PORT": 8050,
         },
         "VISUALIZE": {
             "IMAGE": "ghcr.io/blockscout/visualizer:main",
-            "NAME": "visualize",
+            "NAME": "bs-visualize" + deployment_suffix,
             "PORT": 8050,
         },
         "FRONTEND": {
             "IMAGE": "ghcr.io/blockscout/frontend:v1.29.2",
-            "NAME": "frontend",
+            "NAME": "bs-frontend" + deployment_suffix,
             "PORT": args.get("blockscout_public_port", 8000),
             "TITLE": "Polygon CDK",
         },

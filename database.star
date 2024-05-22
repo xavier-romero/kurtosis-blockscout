@@ -20,7 +20,7 @@ def run(plan, cfg, db_configs):
     )
 
     postgres_service = plan.add_service(
-        name="postgres",
+        name=cfg.get("SERVICE_NAME"),
         config=postgres_service_cfg,
         description="Starting Postgres Service",
     )
