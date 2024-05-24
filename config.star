@@ -62,6 +62,9 @@ def get_config(args, db_host=None, get_db_configs=False):
 
     for k in CONFIG.keys():
         CONFIG[k]["COMMON"] = args
+        CONFIG[k]["COMMON"]["swap_url"] = swap_url
+        CONFIG[k]["COMMON"]["l1_explorer"] = l1_explorer
+        CONFIG[k]["COMMON"]["l1_rpc_url"] = l1_rpc_url
 
     if db_host:
         for k in CONFIG.keys():

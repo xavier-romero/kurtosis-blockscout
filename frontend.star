@@ -1,7 +1,7 @@
 def run(plan, cfg, stack_info):
     title = cfg["TITLE"]
     chain_id = cfg["COMMON"]["chain_id"]
-    l1_explorer = cfg["COMMON"].get("l1_explorer")
+    l1_explorer = cfg["COMMON"]["l1_explorer"]
     swap_url = cfg["COMMON"].get("swap_url")
 
     service_port = cfg["PORT"]
@@ -30,9 +30,8 @@ def run(plan, cfg, stack_info):
         "NEXT_PUBLIC_AD_TEXT_PROVIDER": "none",
         "NEXT_PUBLIC_TRANSACTION_INTERPRETATION_PROVIDER": "blockscout",
         "NEXT_PUBLIC_ROLLUP_TYPE": "zkEvm",
+        "NEXT_PUBLIC_ROLLUP_L1_BASE_URL": l1_explorer
     }
-    if l1_explorer:
-        env_vars["NEXT_PUBLIC_ROLLUP_L1_BASE_URL"] = l1_explorer
     if swap_url:
         env_vars["NEXT_PUBLIC_SWAP_BUTTON_URL"] = swap_url
 
