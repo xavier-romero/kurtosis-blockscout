@@ -10,10 +10,11 @@ def run(plan, args):
     if not args.get("chain_id"):
         chain_id_run = plan.run_sh(
             description="Determining CPU system architecture",
-            run="chainid=$(curl -s " + args["rpc_url"] +
-            """ -X POST -H "Content-Type: application/json" --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}' | jq .result -r)
+            run="chainid=$(curl -s "
+            + args["rpc_url"]
+            + """ -X POST -H "Content-Type: application/json" --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}' | jq .result -r)
             printf "%d" $chainid
-            """
+            """,
         )
         args["chain_id"] = chain_id_run.output
         plan.print("Detected chain_id: " + args["chain_id"])
