@@ -28,20 +28,20 @@ Create a params.yaml with config params
     - l2_rollup_index: Rollup ID for L2
 
 ### Example:
-File params.yaml
-```
-rpc_url: https://rpc.cardona.zkevm-rpc.com
-ws_url: wss://ws.cardona.zkevm-rpc.com
-```
-This will bring a Cardona Testnet Blockscout on http://127.0.0.1:8000
+Find config example files under [```configs```](configs) folder
 
 ## Execution
-```
-kurtosis run github.com/xavier-romero/kurtosis-blockscout --args-file params.yaml --enclave blockscout
-```
+Demo execution for zkEVM Cardona Testnet:
+```kurtosis run github.com/xavier-romero/kurtosis-blockscout --args-file configs/zkevm-cardona.yaml --enclave bs-cardona```
+Point your browser to [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+Demo execution for zkEVM Mainnet:
+```kurtosis run github.com/xavier-romero/kurtosis-blockscout --args-file configs/zkevm-mainnet.yaml --enclave bs-mainnet```
+Point your browser to [http://127.0.0.1:8001](http://127.0.0.1:8001)
+
 
 # Sample screenshots
 
-![Main screen](sample-main.png)
-![Stats](sample-stats.png)
-![Bridge deposits](sample-bridge.png)
+![Main screen](files/sample-main.png)
+![Stats](files/sample-stats.png)
+![Bridge deposits](files/sample-bridge.png)

@@ -1,5 +1,6 @@
 config = "./config.star"
 database = "./database.star"
+database_init = "./files/init.sql"
 backend = "./backend.star"
 stats = "./stats.star"
 visualize = "./visualize.star"
@@ -22,7 +23,9 @@ def run(plan, args):
     # Get the configuration
     cfg, db_configs = import_module(config).get_config(args, get_db_configs=True)
     # Deploy database
-    db_host = import_module(database).run(plan, cfg.get("POSTGRES"), db_configs)
+    db_host = import_module(database).run(
+        plan, cfg=cfg.get("POSTGRES"), db_configs=db_configs, init_sql=database_init
+    )
     # Rebuild the config with the database host
     cfg = import_module(config).get_config(args, db_host)
 

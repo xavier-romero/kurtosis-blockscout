@@ -11,9 +11,11 @@ IMAGE_FRONTEND = "ghcr.io/blockscout/frontend:v1.30.0"
 
 def get_config(args, db_host=None, get_db_configs=False):
     deployment_suffix = args.get("deployment_suffix", "")
-    swap_url = args.get("swap_url", "https://app.uniswap.org/#/swap")
-    l1_explorer = args.get("l1_explorer", "https://etherscan.io/")
-    l1_rpc_url = args.get("l1_rpc_url")
+    common_args = args | {
+        "swap_url": args.get("swap_url", "https://app.uniswap.org/#/swap"),
+        "l1_explorer": args.get("l1_explorer", "https://etherscan.io/"),
+        "l1_rpc_url": args.get("l1_rpc_url", "https://rpc2.sepolia.org/"),
+    }
 
     CONFIG = {
         "POSTGRES": {
@@ -61,10 +63,7 @@ def get_config(args, db_host=None, get_db_configs=False):
     }
 
     for k in CONFIG.keys():
-        CONFIG[k]["COMMON"] = args
-        CONFIG[k]["COMMON"]["swap_url"] = swap_url
-        CONFIG[k]["COMMON"]["l1_explorer"] = l1_explorer
-        CONFIG[k]["COMMON"]["l1_rpc_url"] = l1_rpc_url
+        CONFIG[k]["COMMON"] = common_args
 
     if db_host:
         for k in CONFIG.keys():

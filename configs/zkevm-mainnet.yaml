@@ -1,0 +1,18 @@
+rpc_url: https://zkevm-rpc.com/
+ws_url: wss://ws.zkevm-rpc.com
+
+blockscout_public_port: 8001
+# trace_url: "SET YOUR PRIVATE DEBUG ENDPOINT HERE"
+swap_url: https://bridge-ui.zkevm-g-mainnet.com/login
+l1_explorer: https://etherscan.io/
+l1_rpc_url: https://mainnet.gateway.tenderly.co
+deployment_suffix: "-mainnet"
+bridge_info:
+  l1_start_block: 16896721
+  l1_contract: "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"
+  l1_network_id: 0
+  l1_rollup_index: 0
+  l2_start_block: 0
+  l2_contract: "0x2a3DD3EB832aF982ec71669E178424b10Dca2EDe"
+  l2_network_id: 1
+  l2_rollup_index: 0

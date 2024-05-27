@@ -1,0 +1,18 @@
+rpc_url: https://rpc.cardona.zkevm-rpc.com
+ws_url: wss://ws.cardona.zkevm-rpc.com
+
+blockscout_public_port: 8000
+# trace_url: "SET YOUR PRIVATE DEBUG ENDPOINT HERE IF AVAILABLE"
+swap_url: https://bridge-ui.cardona.zkevm-rpc.com/login
+l1_explorer: https://sepolia.etherscan.io
+l1_rpc_url: https://rpc2.sepolia.org/
+deployment_suffix: "-cardona"
+bridge_info:
+  l1_start_block: 4789190
+  l1_contract: "0x528e26b25a34a4A5d0dbDa1d57D318153d2ED582"
+  l1_network_id: 0
+  l1_rollup_index: 0
+  l2_start_block: 0
+  l2_contract: "0x528e26b25a34a4A5d0dbDa1d57D318153d2ED582"
+  l2_network_id: 1
+  l2_rollup_index: 0

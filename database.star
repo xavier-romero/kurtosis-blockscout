@@ -1,8 +1,12 @@
-def run(plan, cfg, db_configs):
-    init_script_tpl = read_file(src="./init.sql")
+INIT_SQL_NAME = "init.sql"
+INIT_ENTRYPOINT = "/docker-entrypoint-initdb.d/"
+
+
+def run(plan, cfg, db_configs, init_sql):
+    init_script_tpl = read_file(src=init_sql)
     init_script = plan.render_templates(
-        name="init.sql",
-        config={"init.sql": struct(template=init_script_tpl, data=db_configs)},
+        name=INIT_SQL_NAME,
+        config={INIT_SQL_NAME: struct(template=init_script_tpl, data=db_configs)},
     )
 
     postgres_service_cfg = ServiceConfig(
@@ -15,7 +19,7 @@ def run(plan, cfg, db_configs):
             "POSTGRES_USER": cfg.get("USER"),
             "POSTGRES_PASSWORD": cfg.get("PASSWORD"),
         },
-        files={"/docker-entrypoint-initdb.d/": init_script},
+        files={INIT_ENTRYPOINT: init_script},
         cmd=["-N 500"],
     )
 
