@@ -11,6 +11,7 @@ Create a params.yaml with config params
 
 ### Optional params
 - blockscout_public_port: port on which you'll have Blockscout available, 8000 by default
+- blockscout_public_ip: public ip if you want to expose blockscout for remote access
 - trace_url: RPC URL with debug endpoints enabled, rpc_url will be used if omitted
 - chain_id: l2 chain id, if omitted it will be automatically determined through rpc_url
 - swap_url: URL for swap, will just enable a button link on the top right

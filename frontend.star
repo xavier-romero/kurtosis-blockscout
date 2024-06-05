@@ -5,6 +5,7 @@ def run(plan, cfg, stack_info):
     swap_url = cfg["COMMON"].get("swap_url")
 
     service_port = cfg["PORT"]
+    service_ip = cfg["IP"]
     service_name = cfg["NAME"]
     service_image = cfg["IMAGE"]
 
@@ -23,7 +24,7 @@ def run(plan, cfg, stack_info):
             stack_info["visualize_host"], stack_info["visualize_port"]
         ),
         "NEXT_PUBLIC_APP_PROTOCOL": "http",
-        "NEXT_PUBLIC_APP_HOST": "127.0.0.1",
+        "NEXT_PUBLIC_APP_HOST": service_ip or "127.0.0.1",
         "NEXT_PUBLIC_APP_PORT": str(service_port),
         "NEXT_PUBLIC_USE_NEXT_JS_PROXY": "true",
         "NEXT_PUBLIC_AD_BANNER_PROVIDER": "none",
