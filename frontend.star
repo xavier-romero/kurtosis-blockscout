@@ -3,18 +3,25 @@ def run(plan, cfg, stack_info):
     chain_id = cfg["COMMON"]["chain_id"]
     l1_explorer = cfg["COMMON"]["l1_explorer"]
     swap_url = cfg["COMMON"].get("swap_url")
+    backend_exposed = cfg["COMMON"].get("backend_exposed", False)
 
     service_port = cfg["PORT"]
     service_ip = cfg["IP"]
     service_name = cfg["NAME"]
     service_image = cfg["IMAGE"]
 
+    api_host = stack_info["api_host"]
+    api_port = str(stack_info["api_port"])
+    if backend_exposed:
+        api_host = service_ip
+        api_port = str(backend_exposed)
+
     env_vars = {
         "PORT": str(service_port),
         "NEXT_PUBLIC_NETWORK_NAME": title,
         "NEXT_PUBLIC_NETWORK_ID": str(chain_id),
-        "NEXT_PUBLIC_API_HOST": stack_info["api_host"],
-        "NEXT_PUBLIC_API_PORT": str(stack_info["api_port"]),
+        "NEXT_PUBLIC_API_HOST": api_host,
+        "NEXT_PUBLIC_API_PORT": api_port,
         "NEXT_PUBLIC_API_PROTOCOL": "http",
         "NEXT_PUBLIC_API_WEBSOCKET_PROTOCOL": "ws",
         "NEXT_PUBLIC_STATS_API_HOST": "http://{}:{}".format(

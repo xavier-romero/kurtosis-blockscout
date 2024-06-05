@@ -24,6 +24,7 @@ def run(plan, cfg):
     chain_id = cfg["COMMON"].get("chain_id", None)
     l1_rpc_url = cfg["COMMON"].get("l1_rpc_url", None)
     bridge_info = cfg["COMMON"].get("bridge_info", None)
+    backend_exposed = cfg["COMMON"].get("backend_exposed", False)
     title = cfg["TITLE"]
     service_port = cfg["PORT"]
     service_name = cfg["NAME"]
@@ -84,6 +85,14 @@ def run(plan, cfg):
             bridge_info["l2_rollup_index"]
         )
 
+    public_ports = {}
+    if backend_exposed:
+        public_ports = {
+            service_name: PortSpec(
+                service_port, application_protocol="http", wait="1m"
+            ),
+        }
+
     service = plan.add_service(
         name=service_name,
         config=ServiceConfig(
@@ -93,6 +102,7 @@ def run(plan, cfg):
                     service_port, application_protocol="http", wait="1m"
                 ),
             },
+            public_ports=public_ports,
             env_vars=env_vars,
             cmd=[
                 "/bin/sh",

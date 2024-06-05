@@ -15,6 +15,7 @@ def get_config(args, db_host=None, get_db_configs=False):
         "swap_url": args.get("swap_url", "https://app.uniswap.org/#/swap"),
         "l1_explorer": args.get("l1_explorer", "https://etherscan.io/"),
         "l1_rpc_url": args.get("l1_rpc_url", "https://rpc2.sepolia.org/"),
+        "backend_exposed": args.get("blockscot_backend_port", False),
     }
 
     CONFIG = {
@@ -35,7 +36,7 @@ def get_config(args, db_host=None, get_db_configs=False):
             },
             "IMAGE": IMAGE_BACKEND,
             "NAME": "bs-backend" + deployment_suffix,
-            "PORT": 4004,
+            "PORT": args.get("blockscot_backend_port", 4004),
             "TITLE": TITLE,
         },
         "STATS": {
@@ -58,7 +59,7 @@ def get_config(args, db_host=None, get_db_configs=False):
             "IMAGE": IMAGE_FRONTEND,
             "NAME": "bs-frontend" + deployment_suffix,
             "PORT": args.get("blockscout_public_port", 8000),
-            "IP": args.get("blockscout_public_ip"),
+            "IP": args.get("blockscout_public_ip", None),
             "TITLE": TITLE,
         },
     }
