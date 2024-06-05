@@ -58,6 +58,7 @@ def get_config(args, db_host=None, get_db_configs=False):
             "IMAGE": IMAGE_FRONTEND,
             "NAME": "bs-frontend" + deployment_suffix,
             "PORT": args.get("blockscout_public_port", 8000),
+            "IP": args.get("blockscout_public_ip"),
             "TITLE": TITLE,
         },
     }

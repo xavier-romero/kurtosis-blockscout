@@ -2,6 +2,7 @@ rpc_url: https://zkevm-rpc.com/
 ws_url: wss://ws.zkevm-rpc.com
 
 blockscout_public_port: 8001
+# blockscout_public_ip: "set your public ip here if planning to expose the service"
 # trace_url: "SET YOUR PRIVATE DEBUG ENDPOINT HERE"
 swap_url: https://bridge-ui.zkevm-g-mainnet.com/login
 l1_explorer: https://etherscan.io/
