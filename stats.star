@@ -19,6 +19,7 @@ def run(plan, cfg, bs_connection_string):
     )
 
     service_port = cfg["PORT"]
+    service_port_name = cfg["PORT_NAME"]
     service_name = cfg["NAME"]
     service_image = cfg["IMAGE"]
 
@@ -27,7 +28,7 @@ def run(plan, cfg, bs_connection_string):
         config=ServiceConfig(
             image=service_image,
             ports={
-                service_name: PortSpec(
+                service_port_name: PortSpec(
                     service_port, application_protocol="http", wait="30s"
                 ),
             },

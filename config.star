@@ -37,6 +37,7 @@ def get_config(args, db_host=None, get_db_configs=False):
             "IMAGE": IMAGE_BACKEND,
             "NAME": "bs-backend" + deployment_suffix,
             "PORT": args.get("blockscot_backend_port", 4004),
+            "PORT_NAME": "backend",
             "TITLE": TITLE,
         },
         "STATS": {
@@ -49,16 +50,19 @@ def get_config(args, db_host=None, get_db_configs=False):
             "IMAGE": IMAGE_STATS,
             "NAME": "bs-stats" + deployment_suffix,
             "PORT": 8050,
+            "PORT_NAME": "stats",
         },
         "VISUALIZE": {
             "IMAGE": IMAGE_VISUALIZE,
-            "NAME": "bs-visualize" + deployment_suffix,
+            "NAME": "visualize" + deployment_suffix,
             "PORT": 8050,
+            "PORT_NAME": "visualize",
         },
         "FRONTEND": {
             "IMAGE": IMAGE_FRONTEND,
             "NAME": "bs-frontend" + deployment_suffix,
             "PORT": args.get("blockscout_public_port", 8000),
+            "PORT_NAME": "frontend",
             "IP": args.get("blockscout_public_ip", None),
             "TITLE": TITLE,
         },
