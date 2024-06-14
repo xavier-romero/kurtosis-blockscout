@@ -1,5 +1,7 @@
+# https://github.com/blockscout/blockscout-rs/blob/main/docs/common-envs.md
 # https://github.com/blockscout/frontend/blob/main/docs/ENVS.md#transaction-interpretation
 # https://docs.blockscout.com/for-developers/information-and-settings/env-variables
+# https://github.com/blockscout/blockscout-rs/tree/main/smart-contract-verifier
 DB_PORT = 5432
 TITLE = "Polygon CDK"
 IMAGE_POSTGRES = "postgres:16.2"
@@ -7,6 +9,7 @@ IMAGE_BACKEND = "blockscout/blockscout-zkevm:6.5.0"
 IMAGE_STATS = "ghcr.io/blockscout/stats:main"
 IMAGE_VISUALIZE = "ghcr.io/blockscout/visualizer:main"
 IMAGE_FRONTEND = "ghcr.io/blockscout/frontend:v1.30.0"
+IMAGE_VERIFIER = "ghcr.io/blockscout/smart-contract-verifier:v1.7.0"
 
 
 def get_config(args, db_host=None, get_db_configs=False):

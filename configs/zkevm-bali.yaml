@@ -1,0 +1,19 @@
+rpc_url: https://rpc.internal.zkevm-rpc.com
+ws_url: wss://ws.internal.zkevm-rpc.com
+
+blockscout_public_port: 8002
+# blockscout_public_ip: "set your public ip here if planning to expose the service"
+trace_url: https://rpc-debug.internal.zkevm-rpc.com
+swap_url: https://bridge-ui.internal.zkevm-rpc.com/login
+l1_explorer: https://sepolia.etherscan.io
+l1_rpc_url: https://rpc2.sepolia.org/
+deployment_suffix: "-bali"
+bridge_info:
+  l1_start_block: 4765689
+  l1_contract: "0x1348947e282138d8f377b467F7D9c2EB0F335d1f"
+  l1_network_id: 0
+  l1_rollup_index: 0
+  l2_start_block: 0
+  l2_contract: "0x1348947e282138d8f377b467F7D9c2EB0F335d1f"
+  l2_network_id: 1
+  l2_rollup_index: 0
