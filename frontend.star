@@ -54,7 +54,7 @@ def run(plan, cfg, stack_info):
                 ),
             },
             public_ports={
-                service_name: PortSpec(
+                service_port_name: PortSpec(
                     service_port, application_protocol="http", wait="30s"
                 ),
             },
