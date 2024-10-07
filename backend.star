@@ -114,12 +114,12 @@ def run(plan, cfg):
     )
     plan.exec(
         description="""
-        Allow 30s for blockscout to start indexing,
+        Allow 60s for blockscout to start indexing,
         otherwise bs/Stats crashes because it expects to find content on DB
         """,
         service_name=service_name,
         recipe=ExecRecipe(
-            command=["/bin/sh", "-c", "sleep 30"],
+            command=["/bin/sh", "-c", "sleep 60"],
         ),
     )
 
