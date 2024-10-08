@@ -1,0 +1,53 @@
+name: test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        args_file:
+          - configs/zkevm-cardona.yaml
+          - configs/zkevm-mainnet.yaml
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kurtosis
+        shell: bash
+        run: |
+          echo "deb [trusted=yes] https://apt.fury.io/kurtosis-tech/ /" | sudo tee /etc/apt/sources.list.d/kurtosis.list
+          sudo apt update
+          sudo apt install kurtosis-cli
+          kurtosis version
+          kurtosis analytics disable
+      
+      - name: Run Starlark
+        run: kurtosis run --enclave=test --args-file=${{ matrix.args_file }} .
+
+      - name: Dump enclave logs
+        if: failure()
+        run: kurtosis dump ./dump
+
+      - name: Generate archive name
+        if: failure()
+        run: |
+          file_name=$(basename "${{ matrix.args_file }}" ".yaml")
+          archive_name="dump_blockscout_${file_name}_${{ github.run_id }}"
+          echo "ARCHIVE_NAME=${archive_name}" >> "$GITHUB_ENV"
+          echo "Generated archive name: ${archive_name}"
+      - name: Upload logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE_NAME }}
+          path: ./dump

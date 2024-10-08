@@ -2,11 +2,11 @@
 # https://docs.blockscout.com/for-developers/information-and-settings/env-variables
 DB_PORT = 5432
 TITLE = "Polygon CDK"
-IMAGE_POSTGRES = "postgres:16.2"
-IMAGE_BACKEND = "blockscout/blockscout-zkevm:6.5.0"
-IMAGE_STATS = "ghcr.io/blockscout/stats:main"
-IMAGE_VISUALIZE = "ghcr.io/blockscout/visualizer:main"
-IMAGE_FRONTEND = "ghcr.io/blockscout/frontend:v1.30.0"
+IMAGE_POSTGRES = "postgres:17.0"
+IMAGE_BACKEND = "blockscout/blockscout-zkevm:6.8.1"
+IMAGE_STATS = "ghcr.io/blockscout/stats:v2.1.1"
+IMAGE_VISUALIZE = "ghcr.io/blockscout/visualizer:v0.2.1"
+IMAGE_FRONTEND = "ghcr.io/blockscout/frontend:v1.35.0"
 
 
 def get_config(args, db_host=None, get_db_configs=False):
