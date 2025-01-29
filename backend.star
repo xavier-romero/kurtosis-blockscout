@@ -89,7 +89,7 @@ def run(plan, cfg):
     public_ports = {}
     if backend_exposed:
         public_ports = {
-            service_name: PortSpec(
+            service_port_name: PortSpec(
                 service_port, application_protocol="http", wait="1m"
             ),
         }
